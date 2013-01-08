@@ -126,6 +126,17 @@ static NSDateFormatter *_displayFormatter = nil;
 	return [weekdayComponents year];
 }
 
+- (NSTimeInterval)utcTimeStamp{
+    NSDateComponents *comps = [[NSCalendar currentCalendar]
+                               components:NSDayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit
+                               fromDate:[NSDate date]];
+    [comps setHour:0];
+    [comps setMinute:0];
+    [comps setSecond:[[NSTimeZone systemTimeZone] secondsFromGMT]];
+    
+    return [[[NSCalendar currentCalendar] dateFromComponents:comps] timeIntervalSince1970];
+}
+
 - (NSUInteger)weekday {
     [[self class] initializeStatics];
     NSDateComponents *weekdayComponents = [_calendar components:(NSWeekdayCalendarUnit) fromDate:self];

@@ -43,6 +43,7 @@
 - (NSUInteger)hour;
 - (NSUInteger)minute;
 - (NSUInteger)year;
+- (NSTimeInterval)utcTimeStamp; //full seconds since
 
 + (NSDate *)dateFromString:(NSString *)string;
 + (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format;
